@@ -1,0 +1,21 @@
+<%= @list.name %>
+<h4>List details:</h4>
+
+
+<span class="mb-2 d-block"><small><em class="text-muted"><%= "You haven't saved any movies yet!" if @list.movies.empty? %></em></small></span>
+<%= link_to 'add a movie', new_list_bookmark_path(@list), class: 'btn btn-flat' %>
+<%= link_to 'detete this list', list_path(@list), method: :delete, class: 'btn btn-cancel', data: { confirm: 'Are you sure you want to delete this list?' } %>
+
+<ul class="list-group">
+  <% @list.movies.each do |movie| %>
+    <li class="list-group-item"><%= movie.title %></li>
+  <% end %>
+</ul>
+
+<ul class="list-group">
+  <% @list.bookmarks.each do |bookmark| %>
+    <li class="list-group-item"><%= bookmark.comment %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Back to all lists", lists_path %>
